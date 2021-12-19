@@ -1,0 +1,59 @@
+MONGODB Model structure for MERN ProGadget 
+Models--->>> 
+				User-->>
+						name -> String,Required
+						email -> String,Required
+						password -> String,Required
+						isAdmin -> Boolean,Required
+				
+				Product-->>
+						user -> mongoose.Schema.Types.ObjectId,required,ref:'User'
+						name-> String,required
+						image -> String,required
+						brand -> String,required
+						category -> String,required
+						description -> String,required
+						reviews -> [reviewSchema]
+									--> reviewSchema -->
+														name -> String,required
+														rating -> String,required
+														comment -> String,required
+						
+						rating -> Number,Required
+						numReviews -> Number,Required
+						price ->Number,Required
+						countInStock ->Number,Required
+						
+				Order-->>
+						user -> mongoose.Schema.Types.ObjectId,required,ref:'User'
+						orderItems -> [{
+										name -> String,Required
+										qty -> Number,Required
+										image -> String,Required
+										price -> Number,Required
+										product ->mongoose.Schema.Types.ObjectId,required,ref:'Product'
+												
+													}]
+						shippingAddress -> {
+							address -> String,Required
+							city -> String,Required
+							postalCode -> String,Required
+							country -> String,Required
+						
+						}
+						
+						paymentMethod-> String
+						
+						paymentResult->{
+							id -> String
+							status -> String
+							update_Time -> String
+							email_address -> String
+						}
+						taxprice -> Number,Required
+						shippingPrice -> Number,Required
+						totalPrice -> Number,Required
+						isPaid -> Boolean,Required
+						paidAt -> Date
+						isDelievered -> Boolean,Required
+						delievereAt -> Date

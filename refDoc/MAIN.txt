@@ -1,0 +1,132 @@
+MERN Ecommerce-Brad Traversy
+
+1. react-bootstrap
+2. react-router-dom
+3. react-router-bootstrap
+
+4. REST-representational state transfer
+
+
+5. "const express=require('express');" 
+									"module.exports = value"
+										-->  This syntax is common js
+	
+6. on frontend we use the "import" syntax & "export default val"---> which is Es module
+
+
+7. Axios --> http library we use to make http request
+
+8. state in react ---> Two types component level state && global level state(contextApi)
+
+
+9. "Npm concurrently"--> is to run the front end React and Backend react servers simultaneously at the same time
+						--->>> "dev": "concurrently \"npm start\" \"npm run client\""
+	
+	
+10. Add "type":"module" in package.json --> to go from common js(const,require,module.exports) to Es module(import,exports default abc) 
+
+11. Everything getting called twice --->> It is expected that setState updaters will run twice in strict mode in development. 
+										  This helps ensure the code doesn't rely on them running a single time (which wouldn't be the case if an async render was aborted and later restarted).
+										  If your setState updaters are pure functions (as they should be) then this shouldn't affect the logic of your application.
+										  
+										  
+12. (npm i mongoose)--> Mongoose is used for object modeling for node.js
+	-> it allows us to create model or schema for different resources in our database eg. products,users etc.
+	
+13. npm i colors
+
+14: Models--->>> 
+				User-->>
+						name -> String,Required
+						email -> String,Required
+						password -> String,Required
+						isAdmin -> Boolean,Required
+				
+				Product-->>
+						user -> mongoose.Schema.Types.ObjectId,required,ref:'User'
+						name-> String,required
+						image -> String,required
+						brand -> String,required
+						category -> String,required
+						description -> String,required
+						reviews -> [reviewSchema]
+									--> reviewSchema -->
+														name -> String,required
+														rating -> String,required
+														comment -> String,required
+						
+						rating -> Number,Required
+						numReviews -> Number,Required
+						price ->Number,Required
+						countInStock ->Number,Required
+						
+				Order-->>
+						user -> mongoose.Schema.Types.ObjectId,required,ref:'User'
+						orderItems -> [{
+										name -> String,Required
+										qty -> Number,Required
+										image -> String,Required
+										price -> Number,Required
+										product ->mongoose.Schema.Types.ObjectId,required,ref:'Product'
+												
+													}]
+						shippingAddress -> {
+							address -> String,Required
+							city -> String,Required
+							postalCode -> String,Required
+							country -> String,Required
+						
+						}
+						
+						paymentMethod-> String
+						
+						paymentResult->{
+							id -> String
+							status -> String
+							update_Time -> String
+							email_address -> String
+						}
+						taxprice -> Number,Required
+						shippingPrice -> Number,Required
+						totalPrice -> Number,Required
+						isPaid -> Boolean,Required
+						paidAt -> Date
+						isDelievered -> Boolean,Required
+						delievereAt -> Date
+						
+						
+15. npm i bcryptjs to hash the password
+						
+						
+16. npm i express-async-handler--> simple middleware for handling exceptions inside of async express routes and passing them to your express error handlers
+						
+						
+17. REDUX --->>
+				-> We have two types of states Component level state(Application state) & global state
+				-> Global state -> Redux is for global states
+				
+				-> CYCLE: Action -----> Reducer -----> Store ----(subscribe)--> UI ----(dispatch)--> Action
+
+				
+18. npm i redux -> state manager.Popularly used with react but can also be used with other things
+	npm i react-redux -> this helps react , redux to work together
+	npm i redux-thunk -> it alows in our action creaters to make asynchronous requests to the servers
+	npm i redux-devtools-extension -> in order to make redux-devtools work
+	
+19. Redux -->
+				i. first create the store -->import createStore,combineReducers,applyMiddleware from redux
+				ii.create the constants -->> create the reducer --> the actions --> then fire it off in the components
+
+20. useDispatch -> mainly to firing off the action	to get the products and through the reducers to the state
+	useSelector -> to grab the response from the central state whatever we want and use it in the components
+
+21 to create a central state functions	
+					1. create a constant 
+					2. add it to the reducers(create a reducer for that)
+					3. then add a action for that (mainly create a function in actions )
+					
+22. cartActions.js --->>> 
+				getState()--> it allows us to get the entire state tree	
+				
+				
+23. CheckoutSteps component on shipping screen for showing the flow 
