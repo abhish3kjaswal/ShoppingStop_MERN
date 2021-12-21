@@ -101,7 +101,6 @@ const UserEditScreen = ({ match, history }) => {
                 label="Is Admin"
                 checked={isAdmin}
                 onChange={(e) => setIsAdmin(e.target.checked)}
-                required={true}
               ></FormCheck>
             </FormGroup>
 
