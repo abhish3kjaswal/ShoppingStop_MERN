@@ -4,6 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import {
   productListReducer,
   productDetailsReducer,
+  productDeleteReducer,
 } from './reducers/productsReducers'
 import { cartReducer } from './reducers/cartReducers'
 import {
@@ -37,6 +38,7 @@ const reducer = combineReducers({
   userList: userListReducer,
   userDelete: userDeleteReducer,
   userUpdate: userUpdateReducer,
+  productDelete: productDeleteReducer,
 })
 
 //to get the cartItems which are stored in the localStorage

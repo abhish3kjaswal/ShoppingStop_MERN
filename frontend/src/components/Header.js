@@ -30,7 +30,9 @@ const Header = () => {
       <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
         <Container>
           <LinkContainer to="/">
-            <Navbar.Brand>SHOPPINGSTOP</Navbar.Brand>
+            <Navbar.Brand>
+              SHOPPINGSTOP <i class="fas fa-shopping-bag"></i>
+            </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
