@@ -49,14 +49,14 @@ const PaymentScreen = ({ history }) => {
               checked
               onChange={(e) => setPaymentMethod(e.target.value)}
             ></FormCheck>
-            <FormCheck
+            {/* <FormCheck
               type="radio"
               label="Stripe"
               id="Stripe"
               name="paymentMethod"
               value="Stripe"
               onChange={(e) => setPaymentMethod(e.target.value)}
-            ></FormCheck>
+            ></FormCheck> */}
             <FormCheck
               type="radio"
               label="Cash on Delivery"

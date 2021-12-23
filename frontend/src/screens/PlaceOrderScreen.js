@@ -26,18 +26,22 @@ const PlaceOrderScreen = ({ history }) => {
   //calculate prices
   const dispatch = useDispatch()
 
-  // const addDecimal = (num) => {
-  //   return (Math.round(num * 100) / 100).toFixed(2)
-  // }
-  cart.itemsPrice = cart.cartItems.reduce(
-    (acc, item) => acc + item.price * item.qty,
-    0,
+  //limit decimal upto 2 digits
+  const addDecimal = (num) => {
+    return (Math.round(num * 100) / 100).toFixed(2)
+  }
+  cart.itemsPrice = addDecimal(
+    cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0),
   )
-  cart.shippingPrice = cart.itemsPrice < 999 ? 0.0 : 199
+  cart.shippingPrice = addDecimal(cart.itemsPrice < 999 ? 0.0 : 199)
 
-  cart.taxPrice = Number((0.18 * cart.itemsPrice).toFixed(2))
+  cart.taxPrice = addDecimal(Number((0.18 * cart.itemsPrice).toFixed(2)))
 
-  cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice
+  cart.totalPrice = (
+    Number(cart.itemsPrice) +
+    Number(cart.shippingPrice) +
+    Number(cart.taxPrice)
+  ).toFixed(2)
 
   const orderCreate = useSelector((state) => state.orderCreate)
 
