@@ -26,17 +26,26 @@ app.use('/api/upload', uploadRoutes)
 app.get('/api/config/paypal', (req, res) =>
   res.send(process.env.PAYPAL_CLIENT_ID),
 )
+
 //as dirname is  not there in ES module it is only available in common js module -->> so we mimic it(__dirname)
 const __dirname = path.resolve()
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '/frontend/build')))
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(___dirname, 'frontend', 'build', 'index.html'))
+  })
+} else {
+  app.get('/', (req, res) => {
+    res.send('Hello')
+  })
+}
+
 //middlewares
 app.use(notFound)
 app.use(errorHandler)
-
-app.get('/', (req, res) => {
-  res.send('Hello')
-})
 
 const PORT = process.env.PORT || 5000
 
