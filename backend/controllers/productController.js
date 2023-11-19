@@ -8,6 +8,8 @@ const getProducts = asyncHandler(async (req, res) => {
   //
   const products = await Product.find({})
 
+  console.log("Products---------------->",products)
+
   res.json(products)
 })
 
